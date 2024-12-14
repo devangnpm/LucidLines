@@ -29,8 +29,8 @@ model Post {
   id        Int       @id @default(autoincrement())
   title     String
   content   String
-  authorId  Int
-  author    User      @relation(fields: [authorId], references: [id])
+  userId  Int
+  author    User      @relation(fields: [userId], references: [id])
   comments  Comment[] // A post can have multiple comments
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
