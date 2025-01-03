@@ -44,4 +44,5 @@ model Comment {
   userId    Int // The user who wrote the comment
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
+  likes     Int      @default(0) // Default likes set to 0
 }
