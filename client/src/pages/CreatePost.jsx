@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { useRef } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
 
 export function CreatePost() {
   const [title, setTitle] = useState("");
@@ -19,11 +21,18 @@ export function CreatePost() {
     console.log("Submit clicked!");
   };
 
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
+
   return (
-    <div className="flex flex-col border border-red-600 mt-12 ml-28 h-[700px] w-[1200px] gap-y-5">
+    <div className="flex flex-col  mt-12 ml-28 h-[1200px] w-[1200px] gap-y-5">
       <Header />
       <Sidebar />
-      <p className="flex  text-zinc-500 font-medium justify-center text-[40px] font-bold mt-4 text-under ">
+      <p className="flex  text-zinc-500 justify-center text-[40px] font-bold mt-4 text-under ">
         Create Post
       </p>
       <div className="flex mt-5 w-full h-12 justify-between items-center   text-black">
@@ -88,6 +97,29 @@ export function CreatePost() {
           className="flex   ml-12  h-[400px] w-full object-contain min-h-0"
         />
       </div>
+      {/*Tiny MCE Editor*/}
+      <Editor
+      apiKey='50rw478e93pv3v5o8si48417dxoq8hesq048n6rr8b9rrall'
+      init={{
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+          // Your account includes a free trial of TinyMCE premium features
+          // Try the most popular premium features until Jan 18, 2025:
+          'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+        ],
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+      }}
+      initialValue="Welcome to TinyMCE!"
+      className="w-full flex-grow h-[calc(100% - 250px)]"
+    />
     </div>
   );
 }
