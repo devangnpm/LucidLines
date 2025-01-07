@@ -1,46 +1,46 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// const recentUsers = [
-//   {
-//     id: 1,
-//     name: "Aarav Sharma",
-//     profilePicture: "https://randomuser.me/api/portraits/men/1.jpg",
-//     email: "aarav.sharma@example.com",
-//     lastActivity: "2024-12-29T14:23:00Z",
-//   },
-//   {
-//     id: 2,
-//     name: "Isha Gupta",
-//     profilePicture: "https://randomuser.me/api/portraits/women/2.jpg",
-//     email: "isha.gupta@example.com",
-//     lastActivity: "2024-12-29T13:45:00Z",
-//   },
-//   {
-//     id: 3,
-//     name: "Dev Patel",
-//     profilePicture: "https://randomuser.me/api/portraits/men/3.jpg",
-//     email: "dev.patel@example.com",
-//     lastActivity: "2024-12-29T12:10:00Z",
-//   },
-//   {
-//     id: 4,
-//     name: "Ananya Desai",
-//     profilePicture: "https://randomuser.me/api/portraits/women/4.jpg",
-//     email: "ananya.desai@example.com",
-//     lastActivity: "2024-12-29T11:55:00Z",
-//   },
-//   {
-//     id: 5,
-//     name: "Kabir Malhotra",
-//     profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
-//     email: "kabir.malhotra@example.com",
-//     lastActivity: "2024-12-29T10:40:00Z",
-//   },
-// ];
+const recentUsers = [
+  {
+    id: 1,
+    name: "Aarav Sharma",
+    profilePicture: "https://randomuser.me/api/portraits/men/1.jpg",
+    email: "aarav.sharma@example.com",
+    lastActivity: "2024-12-29T14:23:00Z",
+  },
+  {
+    id: 2,
+    name: "Isha Gupta",
+    profilePicture: "https://randomuser.me/api/portraits/women/2.jpg",
+    email: "isha.gupta@example.com",
+    lastActivity: "2024-12-29T13:45:00Z",
+  },
+  {
+    id: 3,
+    name: "Dev Patel",
+    profilePicture: "https://randomuser.me/api/portraits/men/3.jpg",
+    email: "dev.patel@example.com",
+    lastActivity: "2024-12-29T12:10:00Z",
+  },
+  {
+    id: 4,
+    name: "Ananya Desai",
+    profilePicture: "https://randomuser.me/api/portraits/women/4.jpg",
+    email: "ananya.desai@example.com",
+    lastActivity: "2024-12-29T11:55:00Z",
+  },
+  {
+    id: 5,
+    name: "Kabir Malhotra",
+    profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
+    email: "kabir.malhotra@example.com",
+    lastActivity: "2024-12-29T10:40:00Z",
+  },
+];
 
 export default function RecentUsers() {
-  const [recentUsers, setRecentUsers] = useState([]);
+  // const [recentUsers, setRecentUsers] = useState([]);
   const [Error, setError] = useState(false);
 
 
@@ -49,7 +49,7 @@ export default function RecentUsers() {
       try {
         const { data } = await axios.get("/api/user/recentusers");
         console.log(`recentUsers : ${data}`)
-        setRecentUsers(data);
+        // setRecentUsers(data);
       } catch (error) {
         console.error('Error fetching users:', error);
         setError(true)

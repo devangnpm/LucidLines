@@ -12,8 +12,8 @@ export default function Header() {
       <div className="flex items-center justify-between px-4">
         {/* Logo and Title */}
         <div className="flex items-center">
-          <img src={logo} alt="Blog logo" className="w-9 h-9 mr-4" />
-          <h1 className="text-2xl font-mono text-lime-200">LucidLines</h1>
+          <img src={logo} alt="Blog logo" className="w-10 h-10 mr-5" />
+          <h1 className="text-[26px] font-mono text-lime-200">LucidLines</h1>
         </div>
 
         {/* User Avatar */}
