@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { useRef } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
+import { useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
+import axios from 'axios';
+
 
 export function CreatePost() {
   const [title, setTitle] = useState("");
+  const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -13,17 +16,34 @@ export function CreatePost() {
     const file = e.target.files[0];
     if (file) {
       setFileName(file.name);
+      setFile(file)
       setImagePreview(URL.createObjectURL(file));
     }
   };
 
-  const handleSubmit = () => {
-    console.log("Submit clicked!");
-  };
+  const handleUploadImage = async () => {
+    if (!file) {
+      alert("Please select a file to upload");
+      return;
+    }
 
-  const editorRef = useRef(null);  // creating a reference object to our editor and setting it to null initially
+    const formData = new FormData();
+    formData.append('file', file);
 
-  const logEditorContent = () => {  // func to log the editor content using the reference current method
+      // Send file to the server or Cloudinary (use your API endpoint here)
+      const response = await axios.post('http://localhost:3000/posts/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+     
+
+  }
+
+  const editorRef = useRef(null); // creating a reference object to our editor and setting it to null initially
+
+  const logEditorContent = () => {
+    // func to log the editor content using the reference current method
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
     }
@@ -47,7 +67,7 @@ export function CreatePost() {
         />
         <select
           id="topic-selector"
-          onChange={(e) => setTopic(e.target.value)} 
+          onChange={(e) => setTopic(e.target.value)}
           className="flex h-10 text-white px-6 w-[200px] rounded-lg mr-14 bg-grey-50 align-items justify-center"
         >
           <option value="" disabled>
@@ -85,14 +105,14 @@ export function CreatePost() {
 
         {/* Upload Image Button */}
         <button
-          onClick={handleSubmit}
+          onClick={handleUploadImage}
           className="text-white bg-green-500 hover:bg-green-600  rounded-md font-medium h-12 w-[150px] flex items-center justify-center mr-1"
         >
           Upload Image
         </button>
       </div>
       <div className="flex w-[1150px] justify-center items-center h-screen">
-        <img 
+        <img
           src={imagePreview}
           alt={fileName}
           width={250}
@@ -102,35 +122,79 @@ export function CreatePost() {
       {/*Tiny MCE Editor*/}
       <div className="flex pl-12 ">
         <Editor
-        apiKey='50rw478e93pv3v5o8si48417dxoq8hesq048n6rr8b9rrall'
-        onInit={(_evt, editor) => editorRef.current = editor}  /* Once editor initialized  assigning the editor
+          apiKey="50rw478e93pv3v5o8si48417dxoq8hesq048n6rr8b9rrall"
+          onInit={(_evt, editor) =>
+            (editorRef.current = editor)
+          } /* Once editor initialized  assigning the editor
         instance to  our  editorRef object created using useRef here*/
-        init={{
-          height: 600,
-          width: 1105,
-          plugins: [
-            // Core editing features
-            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-            // Your account includes a free trial of TinyMCE premium features
-            // Try the most popular premium features until Jan 18, 2025:
-            'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-          ],
-          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-          tinycomments_mode: 'embedded',
-          tinycomments_author: 'Author name',
-          mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-          ],
-          ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-        }}
-        initialValue="Welcome to TinyMCE!"
-            />
+          init={{
+            height: 600,
+            width: 1105,
+            plugins: [
+              // Core editing features
+              "anchor",
+              "autolink",
+              "charmap",
+              "codesample",
+              "emoticons",
+              "image",
+              "link",
+              "lists",
+              "media",
+              "searchreplace",
+              "table",
+              "visualblocks",
+              "wordcount",
+              // Your account includes a free trial of TinyMCE premium features
+              // Try the most popular premium features until Jan 18, 2025:
+              "checklist",
+              "mediaembed",
+              "casechange",
+              "export",
+              "formatpainter",
+              "pageembed",
+              "a11ychecker",
+              "tinymcespellchecker",
+              "permanentpen",
+              "powerpaste",
+              "advtable",
+              "advcode",
+              "editimage",
+              "advtemplate",
+              "ai",
+              "mentions",
+              "tinycomments",
+              "tableofcontents",
+              "footnotes",
+              "mergetags",
+              "autocorrect",
+              "typography",
+              "inlinecss",
+              "markdown",
+              "importword",
+              "exportword",
+              "exportpdf",
+            ],
+            toolbar:
+              "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+            tinycomments_mode: "embedded",
+            tinycomments_author: "Author name",
+            mergetags_list: [
+              { value: "First.Name", title: "First Name" },
+              { value: "Email", title: "Email" },
+            ],
+            ai_request: (request, respondWith) =>
+              respondWith.string(() =>
+                Promise.reject("See docs to implement AI Assistant")
+              ),
+          }}
+          initialValue="Welcome to TinyMCE!"
+        />
       </div>
-      <button 
-      onClick={logEditorContent} 
-      className="flex border border-red-600"
-      > Log Content</button>
+      <button onClick={logEditorContent} className="flex border border-red-600">
+        {" "}
+        Log Content
+      </button>
     </div>
   );
 }

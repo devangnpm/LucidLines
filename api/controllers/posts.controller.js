@@ -1,5 +1,6 @@
 const prisma = require("../db/prismaclient");
 
+
 async function getAllPosts(params) {
     const allPosts = prisma.post.findMany();
     return allPosts;
@@ -41,6 +42,20 @@ async function createNewPost(postDetails,userId) {
 }
 
 
+// Upload image to Cloudinary logic here
+
+async function uploadPostImage(req,res) {
+    try {
+
+        const fileUrl = req.file
+        console.log(fileUrl)
+        
+    } catch (error) {
+        console.error('error in upload', err);
+        res.status(500)
+    }
+}
+
 
 
 
@@ -53,4 +68,5 @@ module.exports = {
     getAllPosts,
     getPostById,
     updatePostById,
+    uploadPostImage,
 }

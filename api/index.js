@@ -3,9 +3,15 @@ const express = require('express');
 const authRouter = require("./routes/auth.route");
 const postsRouter = require("./routes/posts.route");
 const commentsRouter = require("./routes/comments.route");
-
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:5173',  // Replace with your React app URL
+    methods: 'GET,POST',  // Specify allowed methods
+    allowedHeaders: 'Content-Type,Authorization',  // Allowed headers
+  }));
 
 
 app.use(express.json());
