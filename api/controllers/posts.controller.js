@@ -42,14 +42,14 @@ async function createNewPost(postDetails,userId) {
 }
 
 
-// Upload image to Cloudinary logic here
-
-async function uploadPostImage(req,res) {
+// Upload image to Cloudinary and save the url in database
+async function savePostImageURL(req,res) {
     try {
 
-        const fileUrl = req.file
+        const fileUrl = req.file.path
         console.log(fileUrl)
         
+        res.status(200).json({ fileUrl });
     } catch (error) {
         console.error('error in upload', err);
         res.status(500)
@@ -68,5 +68,5 @@ module.exports = {
     getAllPosts,
     getPostById,
     updatePostById,
-    uploadPostImage,
+    savePostImageURL,
 }

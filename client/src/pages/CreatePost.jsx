@@ -3,21 +3,21 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import axios from 'axios';
-
+import axios from "axios";
 
 export function CreatePost() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [fileURL, setFileURL] = useState("");
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFileName(file.name);
-      setFile(file)
-      setImagePreview(URL.createObjectURL(file));
+      setFile(file);
+      setImagePreview(URL.createObjectURL(file)); // temp url for image previewd
     }
   };
 
@@ -28,24 +28,41 @@ export function CreatePost() {
     }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
-      // Send file to the server or Cloudinary (use your API endpoint here)
-      const response = await axios.post('http://localhost:3000/posts/upload', formData, {
+    // Sending file to backend uploading to Cloudinary and gettingg back fileUrl
+    const response = await axios.post(
+      "http://localhost:3000/posts/upload",
+      formData, // sending form data containing the file
+      {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
-      });
-     
+      }
+    );
 
-  }
+    const { fileUrl } = response.data;
+
+    setFileURL(fileUrl);
+
+    console.log(fileUrl);
+  };
 
   const editorRef = useRef(null); // creating a reference object to our editor and setting it to null initially
 
-  const logEditorContent = () => {
+  const handleBlogPost = () => {
     // func to log the editor content using the reference current method
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
+
+      const editorContent = editorRef.current.getContent();
+      const formData = new FormData();
+      formData.append("editor", editorContent);
+      formData.append("url", fileURL);
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
     }
   };
 
@@ -161,7 +178,6 @@ export function CreatePost() {
               "advcode",
               "editimage",
               "advtemplate",
-              "ai",
               "mentions",
               "tinycomments",
               "tableofcontents",
@@ -183,17 +199,16 @@ export function CreatePost() {
               { value: "First.Name", title: "First Name" },
               { value: "Email", title: "Email" },
             ],
-            ai_request: (request, respondWith) =>
-              respondWith.string(() =>
-                Promise.reject("See docs to implement AI Assistant")
-              ),
           }}
           initialValue="Welcome to TinyMCE!"
         />
       </div>
-      <button onClick={logEditorContent} className="flex border border-red-600">
-        {" "}
-        Log Content
+      {/* Create post button here*/}
+      <button
+        onClick={handleBlogPost}
+        className="flex border border-red-600 text-black justify-center items-center"
+      >
+        + Create Post
       </button>
     </div>
   );

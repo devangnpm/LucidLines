@@ -10,11 +10,11 @@ cloudinary.config({
 
 
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-      folder: 'blogapp',
+    cloudinary: cloudinary, // this is cloudinary instance that holds cnary cfg defined above
+    params: { 
+      folder: 'blogapp', //folder where image will be upload in cloudinary
       allowedFormats: ['jpg', 'jpeg', 'png'],
-    },
+    }, 
   });
 
 module.exports = storage;
