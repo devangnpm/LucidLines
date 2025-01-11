@@ -44,9 +44,9 @@ export default function RecentComments() {
 
 
   return (
-    <div className="flex flex-col border border-red-500 h-[500px] w-[900px] ml-28 mr-4">
+    <div className="flex flex-col border border-black-500 h-[500px] w-[900px] ml-28 mr-4">
       {/* Header */}
-      <div className="flex border border-pink-500 text-black h-14 w-full justify-between items-center">
+      <div className="flex border border-black-500 text-black h-14 w-full justify-between items-center">
         <h1 className="flex justify-center items-center text-lg ml-10">
           Recent Comments
         </h1>

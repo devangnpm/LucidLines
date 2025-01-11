@@ -62,8 +62,8 @@ export default function RecentUsers() {
   if (Error) return <p>Error: {Error}</p>; // Display error state
 
   return (
-    <div className="flex flex-col border border-red-500 h-[500px] w-[600px] ">
-      <div className="flex border border-pink-500 text-black h-14 w-full justify-between items-center bg-slate-200">
+    <div className="flex flex-col  h-[500px] w-[600px] ">
+      <div className="flex text-black h-14 w-full justify-between items-center bg-slate-200">
         <h1 className="flex justify-center items-center text-lg ml-5">
           Recent Users
         </h1>
@@ -71,14 +71,14 @@ export default function RecentUsers() {
           View All
         </button>
       </div>
-      <div className="flex border border-red-500 text-black justify-between p-2">
+      <div className="flex text-black justify-between p-2">
         <p className="flex ml-4">User Image</p>
         <p className="flex mr-4">Username</p>
       </div>
       {recentUsers.map((user) => (
         <li
           key={user.id}
-          className="flex border border-red-500 text-black justify-between p-2 items-center"
+          className="flex border-2 border-black-500 text-black justify-between p-2 items-center"
         >
           <img className="size-12 rounded-3xl ml-5" src={user.profilePicture} />
           <p className="flex mr-4">{user.name}</p>

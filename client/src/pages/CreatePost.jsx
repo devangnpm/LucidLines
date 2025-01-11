@@ -30,7 +30,7 @@ export function CreatePost() {
     const formData = new FormData();
     formData.append("file", file);
 
-    // Sending file to backend uploading to Cloudinary and gettingg back fileUrl
+    // Sending file to backend uploading to Cloudinary and getting back fileUrl
     const response = await axios.post(
       "http://localhost:3000/posts/upload",
       formData, // sending form data containing the file
@@ -50,27 +50,33 @@ export function CreatePost() {
 
   const editorRef = useRef(null); // creating a reference object to our editor and setting it to null initially
 
-  const handleBlogPost = () => {
+  const handleBlogPost = async () => {
     // func to log the editor content using the reference current method
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
 
       const editorContent = editorRef.current.getContent();
-      const formData = new FormData();
-      formData.append("editor", editorContent);
-      formData.append("url", fileURL);
+      const blogData = new FormData();
 
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      blogData.append("editor", editorContent);
+      blogData.append("url", fileURL);
+
+      const response = await axios.post("https://localhost:3000/posts/create-post",blogData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+
+
     }
   };
 
   return (
-    <div className="flex flex-col  mt-12 ml-28 h-[1200px] w-[1200px] gap-y-5">
+    <div className="flex flex-col  mt-2 ml-28 h-[1200px] w-[1200px] gap-y-4">
       <Header />
       <Sidebar />
-      <p className="flex  text-zinc-500 justify-center text-[40px] font-bold mt-4 text-under ">
+      <p className="flex  text-zinc-500 justify-center text-[40px] font-bold mt-4">
         Create Post
       </p>
       <div className="flex mt-5 w-full h-12 justify-between items-center   text-black">
@@ -80,7 +86,7 @@ export function CreatePost() {
           placeholder="Enter Title Here"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="flex h-12  border-black border w-[800px] text-black rounded-xl px-5 ml-12 "
+          className="flex h-12  border-black border w-[800px] text-white text-xl rounded-xl px-5 ml-12 "
         />
         <select
           id="topic-selector"
