@@ -29,6 +29,11 @@ const comments = [
     content: "Could you expand on the last section? It felt a bit rushed.",
     likes: 68,
   },
+  {
+    commentId: 5,
+    content: "Could you expand on the last section? It felt a bit rushed.",
+    likes: 68,
+  },
 ];
 
 export default function RecentComments() {
@@ -44,33 +49,33 @@ export default function RecentComments() {
 
 
   return (
-    <div className="flex flex-col border border-black-500 h-[500px] w-[900px] ml-28 mr-4">
+    <div className="flex flex-col border-2 border-black h-[480px] w-[900px] ml-28 mr-4 overflow-y-auto">
       {/* Header */}
-      <div className="flex border border-black-500 text-black h-14 w-full justify-between items-center">
-        <h1 className="flex justify-center items-center text-lg ml-10">
+      <div className="flex  text-black h-14 w-full justify-between items-center">
+        <h1 className="flex justify-center items-center text-lg ml-5 mt-2">
           Recent Comments
         </h1>
-        <button className="flex p-4 w-24 h-9 mr-14 text-black font-semibold rounded-2xl shadow-md hover:bg-sky-950 border border-black items-center hover:text-white">
+        <button className="flex p-4 w-24 h-9 mr-3 text-black font-semibold rounded-2xl shadow-md hover:bg-sky-950 border border-black items-center hover:text-white mt-3">
           View All
         </button>
       </div>
 
       {/* Comments Table */}
-      <div className="p-4 overflow-hidden hover:overflow-y-auto h-full">
+      <div className="p-1 overflow-hidden hover:overflow-y-auto mt-2  h-full ">
         {/* Table Header */}
-        <div className="grid grid-cols-2 w-full border-b border-gray-400 pb-2 mb-4 font-bold ">
-          <p className="text-lg text-gray-700">Comments</p>
-          <p className="text-lg text-gray-700 pl-32">Likes</p>
+        <div className="grid grid-cols-2 w-full border border-black bg-slate-300 pb-2 font-bold ">
+          <p className="text-lg mt-2 text-black -ml-48">Comments</p>
+          <p className="text-lg mt-2 -mr-24 text-black pl-28">Likes</p>
         </div>
 
         {/* Table Rows */}
         {comments.map((comment) => (
           <div
             key={comment.commentId}
-            className="grid grid-cols-2 w-full border-b border-gray-300 py-2  items-center"
+            className="grid grid-cols-2 w-full border mt-1 border-black py-2  items-center pl-2"
           >
             <p className="text-gray-800">{comment.content}</p>
-            <p className="text-green-600 pl-32">{comment.likes}</p>
+            <p className="text-green-600 ml-52">{comment.likes}</p>
           </div>
         ))}
       </div>

@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const passport = require("../utils/passport.cfg")
-const {getAllPosts, getPostById, updatePostById, savePostImageURL} = require("../controllers/posts.controller")
+const {getAllPosts, getPostById, updatePostById, getPostImageURL} = require("../controllers/posts.controller")
 
 const multer = require('multer'); // importing multer for handling file uploads
 const storage = require('../utils/cloudinary.cfg'); // configuring cloudinary storage
@@ -17,7 +17,7 @@ router.get("/getposts",
 );
 
 //create a new post
-router.post("/create",
+router.post("/create-blog",
     passport.authenticate("jwt" , {session:false}),
     asyncHandler(getPostById)
 )
@@ -32,7 +32,7 @@ router.put("/update",
 router.post("/upload",
     // passport.authenticate("jwt" , {session:false}),
     upload.single('file'),  // uploading to my Cloudinary account and getting back URL
-    asyncHandler(savePostImageURL)
+    asyncHandler(getPostImageURL)
 )
 
 

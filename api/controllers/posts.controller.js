@@ -28,11 +28,12 @@ async function updatePostById(params) {
 }
 
 
-async function createNewPost(postDetails,userId) {
+async function createNewBlogPost(blogData,userId) {
     const newPost = await prisma.post.create({
         data: {
-            title: 'Some random title',
-            content: "Some random content",
+            title: blogData.title,
+            content: blogData.editorContent,
+            image_url: blogData.image_url,
             user: {
                 connect: {id: userId},
             }
@@ -42,8 +43,8 @@ async function createNewPost(postDetails,userId) {
 }
 
 
-// Upload image to Cloudinary and save the url in database
-async function savePostImageURL(req,res) {
+// returning Cloudinary public image url back to frontend 
+async function getPostImageURL(req,res) {
     try {
 
         const fileUrl = req.file.path
@@ -51,7 +52,7 @@ async function savePostImageURL(req,res) {
         
         res.status(200).json({ fileUrl });
     } catch (error) {
-        console.error('error in upload', err);
+        console.error('error in upload', error);
         res.status(500)
     }
 }
@@ -68,5 +69,6 @@ module.exports = {
     getAllPosts,
     getPostById,
     updatePostById,
-    savePostImageURL,
+    getPostImageURL,
+    createNewBlogPost,
 }

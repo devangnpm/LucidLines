@@ -12,6 +12,7 @@ export function CreatePost() {
   const [imagePreview, setImagePreview] = useState(null);
   const [fileURL, setFileURL] = useState("");
 
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {

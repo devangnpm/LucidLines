@@ -18,7 +18,7 @@ export const Admin = () => {
          <TotalComments/>
         </div>
 
-        <div className="flex  w-full  mt-7 ml-3">
+        <div className="flex  w-full  mt-10 ml-3">
          <RecentUsers/>
          <RecentComments/>
         </div>
