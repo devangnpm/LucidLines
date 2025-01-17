@@ -10,7 +10,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[900px] w-[2000px] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 -mt-10 -ml-[400px] overflow-hidden absolute">
+    <div className="flex items-center justify-center h-[57em] w-[125em] bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 -mt-10 -ml-[400px] overflow-hidden absolute">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg m-4">
         <div className="text-center mb-6">
           <h1 className="text-4xl font-bold text-indigo-600">LucidLines</h1>

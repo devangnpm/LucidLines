@@ -3,6 +3,8 @@ const express = require('express');
 const authRouter = require("./routes/auth.route");
 const postsRouter = require("./routes/posts.route");
 const commentsRouter = require("./routes/comments.route");
+const usersRouter = require("./routes/users.route");
+
 const cors = require('cors');
 
 const app = express();
@@ -22,6 +24,8 @@ app.use(express.urlencoded({extended: true}));
 app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
 app.use("/comments", commentsRouter);
+app.use("/users", usersRouter);
+
 
 
 

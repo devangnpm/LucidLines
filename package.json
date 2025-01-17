@@ -2,6 +2,8 @@
   "scripts": {
     "start": "nodemon api/index.js",
     "build": "react-scripts build",
-    "test": "react-scripts test"  
+    "test": "react-scripts test",
+    "client": "npm run dev --prefix client"  
+     
   }
 }

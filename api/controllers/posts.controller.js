@@ -2,7 +2,7 @@ const prisma = require("../db/prismaclient");
 
 
 async function getAllPosts(params) {
-    const allPosts = prisma.post.findMany();
+    const allPosts =  await prisma.post.findMany();
     return allPosts;
 }
 
