@@ -11,6 +11,9 @@ export function CreatePost() {
   const [fileName, setFileName] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [fileURL, setFileURL] = useState("");
+  const [topic, setTopic] = useState("");
+
+  const editorRef = useRef(null); // creating a reference object to our editor and setting it to null initially
 
   
   const handleFileChange = (e) => {
@@ -49,8 +52,6 @@ export function CreatePost() {
     console.log(fileUrl);
   };
 
-  const editorRef = useRef(null); // creating a reference object to our editor and setting it to null initially
-
   const handleBlogPost = async () => {
     // func to log the editor content using the reference current method
     if (editorRef.current) {
@@ -61,14 +62,16 @@ export function CreatePost() {
 
       blogData.append("editor", editorContent);
       blogData.append("url", fileURL);
+      blogData.append("title", title);
+      blogData.append("userId", "1");
 
-      const response = await axios.post("https://localhost:3000/posts/create-post",blogData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      console.log(blogData);
 
+      const response = await axios.post("http://localhost:3000/posts/create",blogData, {
+     
+      });
 
+      console.log(`Rsponse backend: ${response.data}`);
 
     }
   };
@@ -146,7 +149,7 @@ export function CreatePost() {
       {/*Tiny MCE Editor*/}
       <div className="flex pl-12 ">
         <Editor
-          apiKey="50rw478e93pv3v5o8si48417dxoq8hesq048n6rr8b9rrall"
+          apiKey="50rw478e93pv3v5o8si48417dxoq8hesq048n6rr8b9rrall" // exposed key cuz not important
           onInit={(_evt, editor) =>
             (editorRef.current = editor)
           } /* Once editor initialized  assigning the editor
@@ -161,10 +164,8 @@ export function CreatePost() {
               "charmap",
               "codesample",
               "emoticons",
-              "image",
               "link",
               "lists",
-              "media",
               "searchreplace",
               "table",
               "visualblocks",
@@ -172,7 +173,6 @@ export function CreatePost() {
               // Your account includes a free trial of TinyMCE premium features
               // Try the most popular premium features until Jan 18, 2025:
               "checklist",
-              "mediaembed",
               "casechange",
               "export",
               "formatpainter",

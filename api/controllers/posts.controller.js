@@ -28,14 +28,20 @@ async function updatePostById(params) {
 }
 
 
-async function createNewBlogPost(blogData,userId) {
+async function createNewBlogPost(title,editor,url,userId) {
+
+    console.log(title)
+    console.log(url)
+
+    
+
     const newPost = await prisma.post.create({
         data: {
-            title: blogData.title,
-            content: blogData.editorContent,
-            image_url: blogData.image_url,
+            title: title,
+            content: editor,
+            image_url: url,
             user: {
-                connect: {id: userId},
+                connect: {id: parseInt(userId)},
             }
         },
         
