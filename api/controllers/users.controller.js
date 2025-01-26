@@ -2,8 +2,15 @@ const prisma = require("../db/prismaclient");
 
 
 
-async function getAllUsers(userId) {
-    const allUsers = await prisma.user.findMany()
+async function getAllUsers() {
+    const allUsers = await prisma.user.findMany({
+        select: {
+            id: true,
+            username: true,
+            email: true,
+            admin: true,
+        }
+    })
     return allUsers
 }
 

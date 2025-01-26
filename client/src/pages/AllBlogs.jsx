@@ -1,59 +1,65 @@
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+
 
 export function AllBlogs() {
-  // Mock blog data
-  const blogs = [
-    {
-      title: "How to Learn React Effectively",
-      image: "https://img.freepik.com/free-vector/react-native-mobile-app-abstract-concept-illustration-cross-platform-native-mobile-app-development-framework-javascript-library-user-interface-operating-system_335657-3350.jpg?t=st=1736175280~exp=1736178880~hmac=4d78b78f66868c6866d10c513e8eb1e30b56cc71a5523021571710e7e0c7387c&w=740",
-      description: "Learn the best practices and tips for mastering React.",
-    },
-    {
-      title: "The Future of JavaScript",
-      image: "https://via.placeholder.com/400x300",
-      description: "Explore what lies ahead for JavaScript and web development.",
-    },
-    {
-      title: "Node.js for Beginners",
-      image: "https://via.placeholder.com/400x300",
-      description: "A complete guide for those starting with Node.js.",
-    },
-    {
-      title: "Building Full-Stack Apps with Express",
-      image: "https://via.placeholder.com/400x300",
-      description: "Learn to build robust full-stack applications using Express.js.",
-    },
-    {
-      title: "Building Full-Stack Apps with Express",
-      image: "https://via.placeholder.com/400x300",
-      description: "Learn to build robust full-stack applications using Express.js.",
-    },
-    // Add more blogs as needed
-  ];
+
+   const [blogs,setBlogs] = useState([]);
+
+   const location = useLocation();
+   const user = location.state?.user; // Get user object
+   console.log("User info: " + JSON.stringify(user));
+
+   const navigate = useNavigate()
+
+  // Making request on mount using useEffect and empty dependecy array to only run once on page load
+  useEffect(() => {
+
+    async function fetchData() {
+      try {
+        const response = await axios.get("http://localhost:3000/posts/getposts");
+        console.log(response.data);
+        setBlogs(response.data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+      
+    }
+
+    fetchData()
+  },[]);
+
+  // navigate to single blog endpoint and display the blog with the id
+  function handleBlogClick(blog) {
+    console.log("Blogclicked")
+    navigate(`/posts/${blog.id}`, { state: { blog } });
+  }
 
   return (
     <>
       <Header />
       <Sidebar />
 
-      <div className="flex flex-col items-center mt-10 -ml-16 w-[1600px]">
+      <div className="flex flex-col items-center mt-16 -ml-8 w-[1560px]">
         {/* Grid container */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-[1600px] ">
-          {blogs.map((blog, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-[1600px]">
+          {blogs.slice(0, 9).map((blog) => (
             <div
-              key={index}
-              className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg p-4 rounded-lg bg-white border hover:border-stone-500 shadow-lg "
-              onClick={() => console.log('Blogclick')}
+              key={blog.id}
+              className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg p-4 rounded-lg border-gray-500  border-2  shadow-lg bg-[#EEEEEE]/100"
+              onClick={() => handleBlogClick(blog)} // send the blogid to the handler func 
             >
               <img
-                src={blog.image}
+                src={blog.image_url}
                 alt={blog.title}
-                className="w-full h-64 object-cover rounded-t-lg"
+                className="w-full h-64 object-contain rounded-md max-w-full"
               />
               <div className="p-4">
-                <h3 className="text-xl font-semibold">{blog.title}</h3>
-                <p className="mt-2 text-gray-700">{blog.description}</p>
+                <h3 className="text-2xl  mt-4 font-sans text-black">{blog.title}</h3>
               </div>
             </div>
           ))}

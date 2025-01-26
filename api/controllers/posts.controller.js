@@ -7,12 +7,13 @@ async function getAllPosts(params) {
 }
 
 
-async function getPostById(params) {
-    return prisma.post.findUnique({
+async function getPostById(postId) {
+    const post =  prisma.post.findUnique({
         where: {
-            id: postId,
+            id: parseInt(postId),
         }
     })
+    return post;
 }
 
 async function updatePostById(params) {
@@ -27,14 +28,13 @@ async function updatePostById(params) {
     })
 }
 
-
+// creating new blog post with public image url
 async function createNewBlogPost(title,editor,url,userId) {
 
     console.log(title)
     console.log(url)
 
     
-
     const newPost = await prisma.post.create({
         data: {
             title: title,
@@ -62,13 +62,6 @@ async function getPostImageURL(req,res) {
         res.status(500)
     }
 }
-
-
-
-
-
-
-
 
 
 module.exports = {

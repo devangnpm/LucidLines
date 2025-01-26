@@ -54,7 +54,7 @@ export default function RecentUsers() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const { data } = await axios.get("/api/user/recentusers");
+        const { data } = await axios.get("/api/users/recent-users");
         console.log(`recentUsers : ${data}`)
         // setRecentUsers(data);
       } catch (error) {
@@ -69,12 +69,12 @@ export default function RecentUsers() {
   if (Error) return <p>Error: {Error}</p>; // Display error state
 
   return (
-    <div className="flex flex-col  h-[460px] w-[600px] border-2 p-1 border-black overflow-y-auto">
-      <div className="flex text-black h-14 w-full justify-between items-center mt-2">
+    <div className="flex flex-col  h-[460px] w-[600px] border-2 p-1 border-black hover:overflow-y-auto overflow-hidden">
+      <div className="flex text-black h-14 w-full justify-between items-center mt-2 bg-stone-200 border-2 sticky top-0 rounded-2xl">
         <h1 className="flex justify-center items-center text-lg ml-5">
           Recent Users
         </h1>
-        <button className=" flex p-4 w-24 h-9 mr-2 text-black font-semibold rounded-2xl shadow-md hover:bg-sky-950 border hover:text-white border-black items-center">
+        <button className=" flex p-4 w-24 h-9  text-black font-semibold rounded-2xl shadow-md hover:bg-sky-950 border hover:text-white border-black items-center">
           View All
         </button>
       </div>

@@ -11,11 +11,9 @@ export function CreatePost() {
   const [fileName, setFileName] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [fileURL, setFileURL] = useState("");
-  const [topic, setTopic] = useState("");
 
   const editorRef = useRef(null); // creating a reference object to our editor and setting it to null initially
 
-  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -53,29 +51,35 @@ export function CreatePost() {
   };
 
   const handleBlogPost = async () => {
-    // func to log the editor content using the reference current method
     if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-
       const editorContent = editorRef.current.getContent();
+  
       const blogData = new FormData();
-
       blogData.append("editor", editorContent);
       blogData.append("url", fileURL);
       blogData.append("title", title);
       blogData.append("userId", "1");
-
-      console.log(blogData);
-
-      const response = await axios.post("http://localhost:3000/posts/create",blogData, {
-     
-      });
-
-      console.log(`Rsponse backend: ${response.data}`);
-
+  
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/posts/create",
+          blogData
+        );
+  
+        if (response.status === 200) {  // server sends 200 Ok and then reload the page 
+          console.log("Response backend:", response.status)
+                    
+          // Reload page after post submission
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error("Error posting blog:", error);
+      }
+    } else {
+      console.error("Editor reference is not available.");
     }
   };
-
+  
   return (
     <div className="flex flex-col  mt-2 ml-28 h-[1200px] w-[1200px] gap-y-4">
       <Header />
@@ -170,33 +174,6 @@ export function CreatePost() {
               "table",
               "visualblocks",
               "wordcount",
-              // Your account includes a free trial of TinyMCE premium features
-              // Try the most popular premium features until Jan 18, 2025:
-              "checklist",
-              "casechange",
-              "export",
-              "formatpainter",
-              "pageembed",
-              "a11ychecker",
-              "tinymcespellchecker",
-              "permanentpen",
-              "powerpaste",
-              "advtable",
-              "advcode",
-              "editimage",
-              "advtemplate",
-              "mentions",
-              "tinycomments",
-              "tableofcontents",
-              "footnotes",
-              "mergetags",
-              "autocorrect",
-              "typography",
-              "inlinecss",
-              "markdown",
-              "importword",
-              "exportword",
-              "exportpdf",
             ],
             toolbar:
               "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
@@ -207,7 +184,7 @@ export function CreatePost() {
               { value: "Email", title: "Email" },
             ],
           }}
-          initialValue="Welcome to TinyMCE!"
+          initialValue="Welcome to TinyMCE! Write your Blog Details here"
         />
       </div>
       {/* Create post button here*/}

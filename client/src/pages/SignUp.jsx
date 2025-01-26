@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export const SignupPage = () => {
@@ -5,9 +6,24 @@ export const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Signup attempt:", { username, email, password });
+    
+    try {
+      const response = await axios.post("http://localhost:3000/auth/signup", {
+        username,
+        email,
+        password,
+      });
+      
+      if (response.status === 200) {
+        console.log("User sign-up successfull!")
+      }
+
+    } catch (error) {
+      console.error("Signup failed:", error.response?.data || error.message);
+    }
   };
 
   return (
@@ -18,7 +34,10 @@ export const SignupPage = () => {
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-lg font-medium text-gray-700">
+            <label
+              htmlFor="username"
+              className="block text-lg font-medium text-gray-700"
+            >
               Username
             </label>
             <input
@@ -28,11 +47,14 @@ export const SignupPage = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
               placeholder="Your username"
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-white"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-lg font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-lg font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -42,11 +64,14 @@ export const SignupPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-white"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-lg font-medium text-gray-600">
+            <label
+              htmlFor="password"
+              className="block text-lg font-medium text-gray-600"
+            >
               Password
             </label>
             <input
@@ -56,7 +81,7 @@ export const SignupPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-white"
             />
           </div>
           <button

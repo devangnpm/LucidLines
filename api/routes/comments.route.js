@@ -5,7 +5,7 @@ const {
   getComments,
   createComment,
   deleteComment,
-} = require("../controllers/posts.controller");
+} = require("../controllers/comments.controller");
 
 const router = express.Router();
 

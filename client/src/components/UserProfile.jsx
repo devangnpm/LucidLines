@@ -1,10 +1,10 @@
 export default function UserProfile() {
   // Generate a random seed for the avatar
-  const avatarUrl = `https://api.dicebear.com/9.x/lorelei/svg`;
+  const avatarUrl = `https://api.dicebear.com/9.x/lorelei/svg?backgroundColor=5a5a5a&seed=Felix&scale=100&mouth=happy02&hair=variant08`;
 
   return (
-    <div className="container mx-auto flex flex-col w-full h-auto mt-14 ml-40  text-red-600 items-center p-2 gap-y-14">
-      <h1 className="text-3xl mb-6 text-slate-800">Profile</h1>
+    <div className="container mx-auto flex flex-col w-full h-auto mt-14 ml-28  text-red-600 items-center p-2 gap-y-14">
+      <h1 className="text-3xl mb-18 text-gray-800 "> Profile</h1>
 
       {/* Profile Image */}
       <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center mb-6 overflow-hidden">
@@ -20,17 +20,17 @@ export default function UserProfile() {
         <input
           type="text"
           placeholder="Username"
-          className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
         />
         <input
           type="email"
           placeholder="Email"
-          className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
         />
         <input
           type="password"
           placeholder="Password"
-          className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
         />
       </div>
 

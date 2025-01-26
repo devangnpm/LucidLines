@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-
 app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
 app.use("/comments", commentsRouter);

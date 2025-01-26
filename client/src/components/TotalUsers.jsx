@@ -14,7 +14,7 @@ export default function TotalUsers() {
           </div>
           
           {/* User Image */}
-          <div className="flex border border-gray-300 shadow-md rounded-full w-24 h-24 ml-40 mt-4 justify-center items-center bg-blue-500">
+          <div className="flex border border-gray-300 shadow-md rounded-full w-24 h-24 ml-40 mt-4 justify-center items-center bg-sky-400">
             <img
               src={userImg}
               alt="userImageicon"

@@ -10,10 +10,13 @@ cloudinary.config({
 
 
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary, // this is cloudinary instance that holds cnary cfg defined above
+    cloudinary: cloudinary, // this is cloudinary instance that holds cloudinary cfg defined above
     params: { 
       folder: 'blogapp', //folder where image will be upload in cloudinary
       allowedFormats: ['jpg', 'jpeg', 'png'],
+      transformation: [
+        { width: 500, height: 300, crop: 'scale' } // scale down the image to fit within 400x300 maintaining aspect ratio
+      ],
     }, 
   });
 
