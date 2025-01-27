@@ -10,6 +10,9 @@ export const DisplayPost = () => {
   console.log(`Logging postId ${postId}`);
 
   useEffect(() => {
+    document.body.style.backgroundColor = "#121212";
+    document.documentElement.style.backgroundColor = "#121212"; 
+
     async function fetchData() {
       try {
         const response = await axios.get(
@@ -23,22 +26,37 @@ export const DisplayPost = () => {
     }
 
     fetchData();
+
+    return () => {
+      document.body.style.backgroundColor = "";
+      document.documentElement.style.backgroundColor = ""; 
+    };
   }, [postId]);
 
   return (
     <>
       <Header />
-      <div className="flex flex-col  mt-20 border-2 border-red-400 p-2 max-w-90  space-y-2 max-h-[200rem]">
-        <div className="flex border-2 border-red-400 text-black text-center sm:text-left h-14 w-full justify-center items-center">
-          <h1 className="text-4xl">{blog.title}</h1>
+      <div className="flex flex-col mt-20 p-2 max-w-90 space-y-9">
+        {/* Title */}
+        <div className="flex text-black text-center sm:text-left w-full justify-center items-center">
+          <h1 className="text-[2.8em] shadow-text-glow text-neutral-50">{blog.title}</h1>
         </div>
-        <div className="flex border border-red-400 h-96 w-auto bg-cover bg-center bg-no-repeat">
+  
+        {/* Image - removed fixed height */}
+        <div className="relative aspect-[4/2] w-full overflow-hidden">
           <img 
-          className="w-full h-full object-contain "
-          src={blog.image_url} alt="blog image"/>
+            className="object-contain w-full h-[34em]"
+            src={blog.image_url}
+            alt="blog image"
+          />
         </div>
-        <div className="flex h-auto border-2 border-red-400 ">{blog.content}</div>
+  
+        {/* Content */}
+        <div 
+          className="flex flex-col font-sans text-2xl text-left text-neutral-50 space-y-8"
+          dangerouslySetInnerHTML={{ __html: blog.content }}
+        />
       </div>
     </>
-  )
+  );
 };

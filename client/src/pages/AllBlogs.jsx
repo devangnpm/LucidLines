@@ -50,16 +50,16 @@ export function AllBlogs() {
           {blogs.slice(0, 9).map((blog) => (
             <div
               key={blog.id}
-              className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg p-4 rounded-lg border-gray-500  border-2  shadow-lg bg-[#EEEEEE]/100"
+              className="transform transition-transform duration-300 hover:scale-105 hover:shadow-lg rounded-lg border-gray-500  border-2  shadow-lg bg-[#EEEEEE]/100 overflow-hidden"
               onClick={() => handleBlogClick(blog)} // send the blogid to the handler func 
             >
               <img
                 src={blog.image_url}
                 alt={blog.title}
-                className="w-full h-64 object-contain rounded-md max-w-full"
+                className="w-full h-64 object-contain rounded-lg max-w-full -my-5"
               />
-              <div className="p-4">
-                <h3 className="text-2xl  mt-4 font-sans text-black">{blog.title}</h3>
+              <div className="flex border-t-2 border-black border-dashed h-auto p-2 pl-3 pb-8">
+                <h3 className="text-2xl  mt-4 font-sans text-black text-left">{blog.title}</h3>
               </div>
             </div>
           ))}

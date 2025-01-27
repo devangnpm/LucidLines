@@ -161,6 +161,8 @@ export function CreatePost() {
           init={{
             height: 600,
             width: 1105,
+            valid_elements: "*[*]", // Allows all HTML elements and attributes
+            extended_valid_elements: "iframe[src|width|height|frameborder|allowfullscreen]",
             plugins: [
               // Core editing features
               "anchor",
@@ -184,7 +186,7 @@ export function CreatePost() {
               { value: "Email", title: "Email" },
             ],
           }}
-          initialValue="Welcome to TinyMCE! Write your Blog Details here"
+          initialValue="Welcome to TinyMCE! Write your Blog details here"
         />
       </div>
       {/* Create post button here*/}
