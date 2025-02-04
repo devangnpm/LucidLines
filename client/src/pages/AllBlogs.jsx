@@ -21,7 +21,7 @@ export function AllBlogs() {
 
     async function fetchData() {
       try {
-        const response = await axios.get("/api/posts/getposts");
+        const response = await axios.get(`${import.meta.env.API_URL}/posts/getposts`);
         console.log(response.data);
         setBlogs(response.data);
       } catch (error) {

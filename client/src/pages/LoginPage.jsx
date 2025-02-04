@@ -18,7 +18,7 @@ export const LoginPage = () => {
     console.log("Login attempt:", { username, password });
 
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await axios.post(`${import.meta.env.API_URL}/auth/login`, {
         username,
         password,
       });

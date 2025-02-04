@@ -62,7 +62,7 @@ export function CreatePost() {
   
       try {
         const response = await axios.post(
-          "/api/posts/create",
+          `${import.meta.env.API_URL}/posts/create`,
           blogData
         );
   
