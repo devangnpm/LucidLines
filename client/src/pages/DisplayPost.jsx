@@ -16,7 +16,7 @@ export const DisplayPost = () => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `${import.meta.env.API_URL}/posts/${postId}`
+          `${import.meta.env.VITE_API_URL}/posts/${postId}`
         );
         console.log(`API Response: ${JSON.stringify(response.data, null, 2)}`);
         setBlogData(response.data);
