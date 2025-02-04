@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.7.0/skins/content/default/content.min.css");
 
 
 /* Global Styles */

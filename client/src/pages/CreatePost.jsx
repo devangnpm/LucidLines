@@ -34,7 +34,7 @@ export function CreatePost() {
 
     // Sending file to backend uploading to Cloudinary and getting back fileUrl
     const response = await axios.post(
-      "http://localhost:3000/posts/upload",
+      "/api/posts/upload",
       formData, // sending form data containing the file
       {
         headers: {
@@ -62,7 +62,7 @@ export function CreatePost() {
   
       try {
         const response = await axios.post(
-          "http://localhost:3000/posts/create",
+          "/api/posts/create",
           blogData
         );
   
@@ -98,7 +98,7 @@ export function CreatePost() {
         />
         <select
           id="topic-selector"
-          onChange={(e) => setTopic(e.target.value)}
+          // onChange={(e) => setTopic(e.target.value)}
           className="flex h-10 text-white px-6 w-[200px] rounded-lg mr-14 bg-grey-50 align-items justify-center"
         >
           <option value="" disabled>

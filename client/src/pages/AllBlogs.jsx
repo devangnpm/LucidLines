@@ -21,7 +21,7 @@ export function AllBlogs() {
 
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:3000/posts/getposts");
+        const response = await axios.get("/api/posts/getposts");
         console.log(response.data);
         setBlogs(response.data);
       } catch (error) {

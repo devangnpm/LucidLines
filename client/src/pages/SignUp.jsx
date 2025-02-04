@@ -11,7 +11,7 @@ export const SignupPage = () => {
     console.log("Signup attempt:", { username, email, password });
     
     try {
-      const response = await axios.post("http://localhost:3000/auth/signup", {
+      const response = await axios.post("/api/auth/signup", {
         username,
         email,
         password,

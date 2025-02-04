@@ -16,7 +16,7 @@ export const DisplayPost = () => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `http://localhost:3000/posts/${postId}`
+          `/api/posts/${postId}`
         );
         console.log(`API Response: ${JSON.stringify(response.data, null, 2)}`);
         setBlogData(response.data);
