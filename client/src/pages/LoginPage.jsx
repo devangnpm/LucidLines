@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
@@ -93,9 +93,8 @@ export const LoginPage = () => {
         <div className="text-center mt-4">
           <p className="text text-gray-600">
             Don&apos;t have an account?{" "}
-            <a href="/sign-up" className="text-indigo-600 hover:underline">
-              Sign up
-            </a>
+            <Link to="/sign-up" className="text-indigo-600 hover:underline"
+            >Sign Up</Link>
           </p>
         </div>
       </div>
