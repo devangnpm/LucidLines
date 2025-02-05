@@ -89,7 +89,7 @@ export default function RecentUsers() {
           className="flex border mt-1 border-black text-black justify-between p-2 items-center"
         >
           <img className="size-12 rounded-3xl ml-5" src={user.profilePicture} />
-          <p className="flex mr-4">{user.name}</p>
+          <p className="flex mr-4">{user.username}</p>
         </li>
       ))}
     </div>
