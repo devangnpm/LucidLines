@@ -4,18 +4,19 @@ import axios from "axios";
 
 export default function TotalComments() {
 
-  const [comments,setComments] = useState(0);
+  const [comments,setComments] = useState([]);
 
   useEffect(() => {
-  
-    try {
-      const response = axios.get(`${import.meta.env.VITE_API_URL}/comments/getcomments`);
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/comments/getcomments`);
+        setComments(response.data); // ✅ Set comments correctly
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
 
-      setComments(response.data);
-
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-    }
+    fetchComments(); // ✅ Call the function
   }, []);
 
   return (
@@ -25,7 +26,7 @@ export default function TotalComments() {
 
       {/* Count */}
       <div className="mt-20 text-gray-950 text-5xl font-medium font-mono -ml-40 ">
-        {comments}
+        {comments.length}
       </div>
 
       {/* Icon */}

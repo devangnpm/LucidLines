@@ -5,19 +5,27 @@ import axios from "axios";
 
 export default function TotalPosts() {
 
-    const [posts,setPosts] = useState(0);
+    const [posts,setPosts] = useState([]);
 
     useEffect(() => {
+      
+      const fetchPosts = async () => {
+
+        try {
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/posts/getposts`);
+          
+          setPosts(response.data);
+    
+          console.log("Total Posts:", posts); 
   
-    try {
-      const response = axios.get(`${import.meta.env.VITE_API_URL}/posts/getposts`);
-
-      setPosts(response.data);
-
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-    }
-    }, []);
+        } catch (error) {
+          console.error("Error fetching posts:", error);
+        }
+      };
+  
+      fetchPosts();
+    }, [posts]); 
+  
 
 
 
@@ -28,7 +36,7 @@ export default function TotalPosts() {
   
         {/* Count */}
         <div className="flex mt-20 -ml-28 text-gray-950 text-5xl font-medium font-mono">
-          {posts}
+          {posts.length}
         </div>
   
         {/* Icon */}

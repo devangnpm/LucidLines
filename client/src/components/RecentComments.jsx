@@ -45,7 +45,7 @@ export default function RecentComments() {
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/comments/recent-comments`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/comments/getcomments`);
         console.log(`recentUsers : ${response.data}`)
         setComments(response.data);
       } catch (error) {
