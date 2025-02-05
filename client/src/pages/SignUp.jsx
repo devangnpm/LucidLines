@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -94,7 +95,7 @@ export const SignupPage = () => {
         <div className="text-center mt-4">
           <p className="text text-gray-600">
             Already have an account?{" "}
-            <a href="/login" className="text-teal-600 hover:underline">
+            <Link to="/login" className="text-teal-600 hover:underline">
               Log in
             </a>
           </p>

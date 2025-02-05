@@ -43,10 +43,12 @@ export default function Sidebar() {
           <span className="flex pl-2 pr-2 mr-10">Users</span>
         </div>
 
-        <div className="flex hover:border gap-2  justify-center w-full p-3 hover:bg-green-200 hover:text-black">
+        <Link 
+        to="/create-post"
+        className="flex hover:border gap-2  justify-center w-full p-3 hover:bg-green-200 hover:text-black">
           <LiaCommentSolid className="flex  size-7" />
-          <span className="flex pl-2 pr-2 mr-2">Comments</span>
-        </div>
+          <span className="flex pl-2 pr-2 mr-2">Create Post</span>
+        </Link>
 
         <div className="flex hover:border gap-2 justify-center w-full p-3 hover:bg-green-200 hover:text-black">
           <BiLogOut className="flex -ml-1 size-7" />
