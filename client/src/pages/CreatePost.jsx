@@ -192,7 +192,7 @@ export function CreatePost() {
       {/* Create post button here*/}
       <button
         onClick={handleBlogPost}
-        className="flex border border-red-600 text-black justify-center items-center"
+        className="flex border border-black text-black text-xl bg-lime-500 h-10 w-24 justify-center items-center"
       >
         + Create Post
       </button>
