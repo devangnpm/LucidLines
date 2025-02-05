@@ -34,7 +34,7 @@ export function CreatePost() {
 
     // Sending file to backend uploading to Cloudinary and getting back fileUrl
     const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/posts/upload`,
+      `${import.meta.env.VITE_API_URL}/posts/upload`,
       formData, // sending form data containing the file
       {
         headers: {
@@ -192,7 +192,7 @@ export function CreatePost() {
       {/* Create post button here*/}
       <button
         onClick={handleBlogPost}
-        className="flex border border-black text-black text-xl bg-lime-500 h-10 w-24 justify-center items-center"
+        className="flex border border-black text-black text-xl bg-green-500 h-10 w-40 ml-10 justify-center items-center"
       >
         + Create Post
       </button>

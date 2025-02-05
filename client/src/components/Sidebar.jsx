@@ -29,14 +29,16 @@ export default function Sidebar() {
           <span className="flex pl-2 pr-2">Profile</span>
         </Link>
 
-        <div className="flex hover:border justify-center w-full p-3 hover:bg-green-200 hover:text-black">
+        <Link
+        to="/blogs"
+        className="flex hover:border justify-center w-full p-3 hover:bg-green-200 hover:text-black">
           <div className="flex items-center -ml-12">
             <BsCardText className="size-7 mr-7" />
           </div>
           <div className="flex items-center -ml-2 ">
-            <span>Posts</span>
+            <span>Blogs</span>
           </div>
-        </div>
+        </Link>
 
         <div className="flex hover:border justify-center w-full p-3 hover:bg-green-200 hover:text-black">
           <FaUsers className="flex size-7 mr-3" />
