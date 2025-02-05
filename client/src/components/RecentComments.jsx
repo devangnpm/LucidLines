@@ -1,51 +1,60 @@
 
-// import { useEffect } from 'react';
+import { useEffect , useState} from 'react';
+import axios from 'axios';
 
 
-const comments = [
-  {
-    commentId: 1,
-    content: "This article really resonates with me. Great work!",
-    likes: 120,
-  },
-  {
-    commentId: 2,
-    content:
-      "I disagree with some points, but it's an interesting perspective.",
-    likes: 85,
-  },
-  {
-    commentId: 3,
-    content: "Can you provide more examples on this topic? Thanks!",
-    likes: 42,
-  },
-  {
-    commentId: 4,
-    content: "Wow, this was so insightful. Looking forward to more posts!",
-    likes: 150,
-  },
-  {
-    commentId: 5,
-    content: "Could you expand on the last section? It felt a bit rushed.",
-    likes: 68,
-  },
-  {
-    commentId: 5,
-    content: "Could you expand on the last section? It felt a bit rushed.",
-    likes: 68,
-  },
-];
+// const mockData = [
+//   {
+//     commentId: 1,
+//     content: "This article really resonates with me. Great work!",
+//     likes: 120,
+//   },
+//   {
+//     commentId: 2,
+//     content:
+//       "I disagree with some points, but it's an interesting perspective.",
+//     likes: 85,
+//   },
+//   {
+//     commentId: 3,
+//     content: "Can you provide more examples on this topic? Thanks!",
+//     likes: 42,
+//   },
+//   {
+//     commentId: 4,
+//     content: "Wow, this was so insightful. Looking forward to more posts!",
+//     likes: 150,
+//   },
+//   {
+//     commentId: 5,
+//     content: "Could you expand on the last section? It felt a bit rushed.",
+//     likes: 68,
+//   },
+//   {
+//     commentId: 5,
+//     content: "Could you expand on the last section? It felt a bit rushed.",
+//     likes: 68,
+//   },
+// ];
 
 export default function RecentComments() {
 
-  // useEffect(() => {
-    
-  
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-  
+  const [comments, setComments] = useState([]);
+
+
+  useEffect(() => {
+    async function fetchComments() {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/comments/recent-comments`);
+        console.log(`recentUsers : ${response.data}`)
+        setComments(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchComments();
+  }, []);
 
 
   return (

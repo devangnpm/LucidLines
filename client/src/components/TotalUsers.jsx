@@ -1,6 +1,25 @@
+import { useEffect,useState } from "react";
 import userImg from "../assets/users.svg";
+import axios from "axios";
 
 export default function TotalUsers() {
+
+    const [users,setUsers] = useState(0);
+
+    useEffect(() => {
+  
+    try {
+      const response = axios.get(`${import.meta.env.VITE_API_URL}/users/recent-users`);
+
+      setUsers(response.data);
+
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+    }, []);
+    
+
+
     return (
       <div>
         {/* Total Users */}
@@ -10,7 +29,7 @@ export default function TotalUsers() {
           
           {/* User Count */}
           <div className="flex mt-16 -ml-28 text-gray-950 text-5xl font-medium font-mono">
-            12
+            {users}
           </div>
           
           {/* User Image */}

@@ -1,6 +1,26 @@
+
+import { useEffect, useState } from "react";
 import postImg from "../assets/add-post.png";
+import axios from "axios";
 
 export default function TotalPosts() {
+
+    const [posts,setPosts] = useState(0);
+
+    useEffect(() => {
+  
+    try {
+      const response = axios.get(`${import.meta.env.VITE_API_URL}/posts/getposts`);
+
+      setPosts(response.data);
+
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+    }, []);
+
+
+
     return (
       <div className="flex border border-gray-200 shadow-lg hover:shadow-2xl w-96 h-38 rounded-lg bg-white transform hover:scale-105 transition-all duration-300">
         {/* Title */}
@@ -8,7 +28,7 @@ export default function TotalPosts() {
   
         {/* Count */}
         <div className="flex mt-20 -ml-28 text-gray-950 text-5xl font-medium font-mono">
-          11
+          {posts}
         </div>
   
         {/* Icon */}
