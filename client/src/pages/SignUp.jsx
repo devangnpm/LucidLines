@@ -95,9 +95,7 @@ export const SignupPage = () => {
         <div className="text-center mt-4">
           <p className="text text-gray-600">
             Already have an account?{" "}
-            <Link to="/login" className="text-teal-600 hover:underline">
-              Log in
-            </a>
+            <Link to="/login" className="text-teal-600 hover:underline">Log In</Link>
           </p>
         </div>
       </div>
