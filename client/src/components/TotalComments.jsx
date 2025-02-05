@@ -10,13 +10,13 @@ export default function TotalComments() {
     const fetchComments = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/comments/getcomments`);
-        setComments(response.data); // ✅ Set comments correctly
+        setComments(response.data); 
       } catch (error) {
         console.error("Error fetching comments:", error);
       }
     };
 
-    fetchComments(); // ✅ Call the function
+    fetchComments(); 
   }, []);
 
   return (

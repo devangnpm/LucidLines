@@ -34,7 +34,7 @@ export function CreatePost() {
 
     // Sending file to backend uploading to Cloudinary and getting back fileUrl
     const response = await axios.post(
-      "/api/posts/upload",
+      `${import.meta.env.VITE_API_URL}/api/posts/upload`,
       formData, // sending form data containing the file
       {
         headers: {
@@ -153,7 +153,7 @@ export function CreatePost() {
       {/*Tiny MCE Editor*/}
       <div className="flex pl-12 ">
         <Editor
-          apiKey="50rw478e93pv3v5o8si48417dxoq8hesq048n6rr8b9rrall" // exposed key cuz not important
+          apiKey="6sj9irjrzv7kgups27q8dsyrdng33f5hrlh8ftatgtz2itkz" // exposed key cuz not important
           onInit={(_evt, editor) =>
             (editorRef.current = editor)
           } /* Once editor initialized  assigning the editor
@@ -164,7 +164,7 @@ export function CreatePost() {
             valid_elements: "*[*]", // Allows all HTML elements and attributes
             extended_valid_elements: "iframe[src|width|height|frameborder|allowfullscreen]",
             plugins: [
-              // Core editing features
+              // Core editing featuressa
               "anchor",
               "autolink",
               "charmap",

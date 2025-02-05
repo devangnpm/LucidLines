@@ -16,7 +16,6 @@ export default function TotalPosts() {
           
           setPosts(response.data);
     
-          console.log("Total Posts:", posts); 
   
         } catch (error) {
           console.error("Error fetching posts:", error);
@@ -24,7 +23,7 @@ export default function TotalPosts() {
       };
   
       fetchPosts();
-    }, [posts]); 
+    }, []); 
   
 
 

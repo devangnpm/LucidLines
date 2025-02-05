@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function TotalUsers() {
 
-    const [users,setUsers] = useState(0);
+    const [users,setUsers] = useState([]);
 
     useEffect(() => {
       const fetchUsers = async () => {
@@ -30,7 +30,7 @@ export default function TotalUsers() {
           
           {/* User Count */}
           <div className="flex mt-16 -ml-28 text-gray-950 text-5xl font-medium font-mono">
-            {users.username}
+            {users.length}
           </div>
           
           {/* User Image */}
