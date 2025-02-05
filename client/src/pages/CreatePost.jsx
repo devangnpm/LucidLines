@@ -153,7 +153,7 @@ export function CreatePost() {
       {/*Tiny MCE Editor*/}
       <div className="flex pl-12 ">
         <Editor
-          apiKey="6sj9irjrzv7kgups27q8dsyrdng33f5hrlh8ftatgtz2itkz" // exposed key cuz not important
+          apiKey="qwk06cg56qar1w11q4l4yr162e8rvidwwjgr3xy93tkqu1k2" // exposed key cuz not important
           onInit={(_evt, editor) =>
             (editorRef.current = editor)
           } /* Once editor initialized  assigning the editor
