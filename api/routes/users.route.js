@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-// const passport = require("../utils/passport.cfg")
+const passport = require("../utils/passport.cfg")
 
 const {
   getAllUsers,
