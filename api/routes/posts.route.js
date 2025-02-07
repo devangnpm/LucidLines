@@ -18,7 +18,7 @@ const router = express.Router();
 //get all posts
 router.get(
   "/getposts",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   asyncHandler( async (req,res) => {
     const allPosts = await getAllPosts();
     console.log("Fetched posts:", allPosts); 
@@ -30,7 +30,7 @@ router.get(
 //create a new post
 router.post(
   "/create",
-  // passport.authenticate("jwt" , {session:false}),
+  passport.authenticate("jwt" , {session:false}),
   upload.none(),
   async (req, res) => {
 
@@ -57,7 +57,7 @@ router.put(
 // New post image upload route
 router.post(
   "/upload",
-  // passport.authenticate("jwt" , {session:false}),
+  passport.authenticate("jwt" , {session:false}),
   upload.single("file"), // uploading to my Cloudinary account and getting back URL
   asyncHandler(getPostImageURL)
 );
@@ -66,6 +66,7 @@ router.post(
 // Get a single blog post details (postId)
 router.get(
   "/:postId",
+  passport.authenticate("jwt" , {session:false}),
   asyncHandler(async (req, res) => {
     const postId = req.params.postId; // Ensure it's a number
     console.log(`postId log: ${postId}`);
