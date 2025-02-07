@@ -11,8 +11,8 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'https://lucid-lines-ukwc.vercel.app',  // Replace with your React app URL
-    methods: 'GET,POST',  // Specify allowed methods
+    origin: 'https://lucidlines-production.up.railway.app',
+    methods: 'GET,POST', 
     allowedHeaders: 'Content-Type,Authorization',  // Allowed headers
     credentials: true,
   }));
