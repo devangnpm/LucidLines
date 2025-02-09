@@ -66,7 +66,7 @@ router.post(
 // Get a single blog post details (postId)
 router.get(
   "/:postId",
-  passport.authenticate("jwt" , {session:false}),
+  // passport.authenticate("jwt" , {session:false}),
   asyncHandler(async (req, res) => {
     const postId = req.params.postId; // Ensure it's a number
     console.log(`postId log: ${postId}`);
