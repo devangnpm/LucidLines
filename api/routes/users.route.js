@@ -19,12 +19,12 @@ router.get("/test", (req, res) => {
 
 // update user details
 router.post("/update-user", 
-  passport.authenticate("jwt" , {session:false}),
+  // passport.authenticate("jwt" , {session:false}),
   asyncHandler(updateUserDetails));
 
 // get all users
 router.get("/recent-users",
-  passport.authenticate("jwt" , {session:false}),
+  // passport.authenticate("jwt" , {session:false}),
   asyncHandler( async (req,res) => {
     const allUsers = await getAllUsers()
     console.log(allUsers)
@@ -33,7 +33,7 @@ router.get("/recent-users",
 );
 
 router.delete("/delete",
-  passport.authenticate("jwt" , {session:false}),
+  // passport.authenticate("jwt" , {session:false}),
   asyncHandler(deleteUser));
 
 module.exports = router;

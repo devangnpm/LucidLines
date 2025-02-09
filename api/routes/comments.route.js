@@ -12,20 +12,20 @@ const router = express.Router();
 
 // get all the comments
 router.get("/getcomments", 
-    passport.authenticate("jwt" , {session:false}),
+    // passport.authenticate("jwt" , {session:false}),
     asyncHandler(getComments),
 );
 
 
 // create a new post
 router.post("/create", 
-    passport.authenticate("jwt" , {session:false}),
+    // passport.authenticate("jwt" , {session:false}),
     asyncHandler(createComment),
 );
 
 // get comments related to a post
 router.get("/getcomments/:postId", 
-    passport.authenticate("jwt" , {session:false}),
+    // passport.authenticate("jwt" , {session:false}),
     asyncHandler(getComments),
 );
 
