@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
     origin: 'https://lucid-lines-ukwc.vercel.app',
     methods: 'GET,POST', 
-    allowedHeaders: 'Content-Type,Authorization',  // Allowed headers
+    allowedHeaders: ['Content-Type,Authorization'],  // Allowed headers
     credentials: true,
   }));
 
