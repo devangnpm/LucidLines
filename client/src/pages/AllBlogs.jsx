@@ -21,7 +21,11 @@ export function AllBlogs() {
 
     async function fetchData() {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/posts/getposts`);
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/posts/getposts`,{
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        });
         console.log(response.data);
         setBlogs(response.data);
       } catch (error) {
